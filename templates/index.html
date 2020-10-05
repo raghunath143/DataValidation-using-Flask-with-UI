@@ -1,0 +1,115 @@
+{% extends "bootstrap/base.html" %}
+
+
+
+{% block title %}
+
+Demo App
+
+{% endblock %}
+
+
+
+{% block styles %}
+
+{{super()}}
+
+<style>
+
+  body {
+
+  padding-top: 50px;
+
+  background-image:url('static/img/bk4.jpg');
+
+   background-size: cover;
+
+
+
+}
+
+.starter-template {
+
+  position: relative;
+
+  height: auto;
+
+}
+
+
+
+</style>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+
+
+<nav class="navbar navbar-fixed-top" style="background-color: #2170c9">
+
+    <div class="container">
+
+        <div class="navbar-header">
+
+            <a class="brand-logo"><img src="static/img/download.png" width="82" height="50"></a>
+
+            <a class="brand-logo" href="#" style="color: black;"><b>IDEA Project</b></a>
+
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbar">
+
+            <ul class="nav navbar-nav" >
+
+
+
+
+
+                <li><a href="{{ url_for('login') }}" style="color: black;">Login</a></li>
+
+                <li><a href="{{ url_for('signup') }}" style="color: black;">Sign Up</a></li>
+
+
+
+            </ul>
+
+        </div><!--/.nav-collapse -->
+
+    </div>
+
+</nav>
+
+
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<br>
+
+<div class="starter-template">
+
+    <h1 align="center">IDEA Automation Tool</h1>
+
+    <p class="lead" align="center">Welcome to IDEA QA </p>
+
+    <p align="center"> <a href="{{ url_for('login') }}">Login</a> to continue..</p>
+
+
+
+</div>
+
+
+
+
+{% endblock %}
+

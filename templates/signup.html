@@ -1,0 +1,58 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Sign Up
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<style>
+  body {
+  padding-top: 50px;
+  background-image:url('static/img/bk4.jpg');
+  background-size: cover;
+}
+.starter-template {
+  position: relative;
+  height: auto;
+}
+
+</style>
+{% endblock %}
+
+{% block content %}
+
+<nav class="navbar navbar-fixed-top" style="background-color: #2170c9">
+
+    <div class="container">
+        <div class="navbar-header">
+            <a class="brand-logo" ><img src="static/img/download.png" width="82" height="50"></a>
+            <a class="brand-logo" href="#" style="color: black;"><b>IDEA Project</b></a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="nav navbar-nav" >
+                <li></li>
+                <li class="active"><a href="{{ url_for('index') }}" style="color: black;">Home</a></li>
+                <li><a href="{{ url_for('login') }}" style="color: black;">Login</a></li>
+                <li><a href="{{ url_for('signup') }}" style="color: black;">Sign Up</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+<p></p><br><br>
+<div class="col-sm-3 col-md-offset-4"  style="border:thin solid blue; border-radius: 15px; box-shadow: 3px 3px 5px #535353;" >
+
+    <form action="/signup" class="form-signin" method="POST">
+        <h2 class="form-signin-heading">Sign Up</h2>
+        {{ form.hidden_tag() }}
+        {{ wtf.form_field(form.username) }}
+        {{ wtf.form_field(form.email) }}
+        {{ wtf.form_field(form.password) }}
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+        <br>
+        <br>
+    </form>
+
+</div> <!-- /container -->
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}
+Dashboard
+{% endblock %}
+{% block styles %}
+{{super()}}
+<style>
+body {
+  padding-top: 50px;
+  background-image:url('static/img/bk35.jpg');
+  background-size: cover;
+}
+.starter-template {
+  position: relative;
+  height: auto;
+}
+
+</style>
+
+{% endblock %}
+{% block scripts %}
+<script>
+
+</script>
+{{super()}}
+{% endblock %}
+{% block content %}
+<nav class="navbar navbar-fixed-top" style="background-color: #1c3448">
+    <div class="container">
+	    <div class="col-md-offset-1 navbar-header" >
+            <!--a class="brand-logo"><img src="static/img/download.png" width="82" height="50"></a-->
+            <a class="navbar-brand" href="#" style="color: white;"><b>IDEA Project</b></a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar" >
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="" style="color: white;">Profile</a></li>
+                <li><a href="{{ url_for('logout') }}" style="color: white;">Log Out</a></li>
+            </ul>
+            <form class="navbar-form navbar-right">
+                <input class="form-control" placeholder="Search..." type="text">
+            </form>
+
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+<div  style="height:100%">
+
+    <!-- Sidebar -->
+    <nav id="sidebar" style="background-color: #000080; width:6%" class="col-sm-1" >
+        <br>
+         <a href="{{ url_for('dashboard') }}" ><img src="static/img/home.PNG" style="border-radius: 50%;" title="Home"  alt="Home" width="35" height="35"></a>
+        <br><br>
+        <a href="{{ url_for('Index') }}"><img src="static/img/dbcon.PNG" style="border-radius: 50%;" title="Create Database Connection"  alt="Create Database Connection" width="35" height="35"></a>
+         <br><br>
+        <a href="{{ url_for('testcasegroup') }}"><img src="static/img/tcg.PNG" style="border-radius: 50%;" title="Create Test Case Group" alt="Create Test Case Group" width="35" height="35"></a>
+         <br><br>
+        <a href=""><img src="static/img/tc.PNG"  style="border-radius: 50%;" title="Create Test Case" alt="Create Test Case" width="35" height="35"></a>
+         <br><br>
+        <a href="{{ url_for('results') }}"><img src="static/img/report.PNG" style="border-radius: 50%;" title="Execute and View Report" alt="Execute and View Report" width="35" height="35"></a>
+         <br><br>
+        <a href=""><img src="static/img/graph.PNG" style="border-radius: 50%;" title="Graphical Report" alt="Graphical Report" width="35" height="35"></a>
+         <br><br><br><br><br><br>
+        <a href=""><img src="static/img/dbcon.PNG" style="border-radius: 50%;" title="Help"  alt="Help" width="35" height="35"></a>
+            <br><br>
+        <br><br>
+
+    </nav>
+</div>
+<div  style="background-color:	#d3d3d3;"><b>Home->Test Case</b></div>
+<br>
+
+
+<h1>Charts</h1><br>
+
+
+
+
+
+{% endblock %}
+
+
+

@@ -1,0 +1,178 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}
+Dashboard
+{% endblock %}
+{% block styles %}
+{{super()}}
+<style>
+body {
+  padding-top: 50px;
+  background-image:url('static/img/bk35.jpg');
+  background-size: cover;
+}
+.starter-template {
+  position: relative;
+  height: auto;
+}
+
+</style>
+
+{% endblock %}
+{% block scripts %}
+<script>
+
+</script>
+{{super()}}
+{% endblock %}
+{% block content %}
+<nav class="navbar navbar-fixed-top" style="background-color: #1c3448">
+    <div class="container">
+	    <div class="col-md-offset-1 navbar-header" >
+            <!--a class="brand-logo"><img src="static/img/download.png" width="82" height="50"></a-->
+            <a class="navbar-brand" href="#" style="color: white;"><b>IDEA Project</b></a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar" >
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="" style="color: white;">Profile</a></li>
+                <li><a href="{{ url_for('logout') }}" style="color: white;">Log Out</a></li>
+            </ul>
+            <form class="navbar-form navbar-right">
+                <input class="form-control" placeholder="Search..." type="text">
+            </form>
+
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+<div  style="height:100%">
+
+    <!-- Sidebar -->
+    <nav id="sidebar" style="background-color: #000080; width:6%" class="col-sm-1" >
+        <br>
+         <a href="{{ url_for('dashboard') }}" ><img src="static/img/home.PNG" style="border-radius: 50%;" title="Home"  alt="Home" width="35" height="35"></a>
+        <br><br>
+        <a href="{{ url_for('Index') }}"><img src="static/img/dbcon.PNG" style="border-radius: 50%;" title="Create Database Connection"  alt="Create Database Connection" width="35" height="35"></a>
+         <br><br>
+        <a href="{{ url_for('testcasegroup') }}"><img src="static/img/tcg.PNG" style="border-radius: 50%;" title="Create Test Case Group" alt="Create Test Case Group" width="35" height="35"></a>
+         <br><br>
+        <a href=""><img src="static/img/tc.PNG"  style="border-radius: 50%;" title="Create Test Case" alt="Create Test Case" width="35" height="35"></a>
+         <br><br>
+        <a href="{{ url_for('results') }}"><img src="static/img/report.PNG" style="border-radius: 50%;" title="Execute and View Report" alt="Execute and View Report" width="35" height="35"></a>
+         <br><br>
+        <a href="{{ url_for('graphics') }}"><img src="static/img/graph.PNG" style="border-radius: 50%;" title="Graphical Report" alt="Graphical Report" width="35" height="35"></a>
+         <br><br><br><br><br><br>
+        <a href=""><img src="static/img/dbcon.PNG" style="border-radius: 50%;" title="Help"  alt="Help" width="35" height="35"></a>
+            <br><br>
+        <br><br>
+
+    </nav>
+</div>
+<div  style="background-color:	#d3d3d3;"><b>Home->Test Case</b></div>
+<br>
+
+
+     VALIDATION OF TEST CASES
+        <form action = "/comparision" method = "post">
+
+
+            <br>
+
+            <fieldset class=" col-sm-offset-1 col-sm-10" style="border: solid 2px #5D8AA8 !important;padding: 0px 10px 10px 10px;;  border-bottom:
+none;">
+                <legend style="width: auto !important; border: none;  font-size: 10px; font-weight: bold;">Source Details</legend>
+                <table style="font-size: 10px;">
+                    <tr>
+                        <td><label>Source Connection:</label></td>
+                        <td><select name= "SourceConnection" style="width: 800px;">
+                            <option value="default">Select Source Connection Name</option>
+                            {% for Databasename in Databasename_src %}
+                            <!--option value="{{ version }}"  {{ Databasename }}</option -->
+                                <option name="source">{{ Databasename }}</option>
+                            {% endfor %}
+                    </select>
+                </td>
+                        </tr>
+
+                      <tr>
+                        <td><label>Source Table:  </label></td>
+                        <td><input type="Text" name="SourceTable" placeholder="Table Name" style="width: 800px;"></td>
+                         </tr>
+
+                </table>
+            </fieldset>
+            <br>
+
+            <fieldset class=" col-sm-offset-1 col-sm-10" style="border: solid 2px #5D8AA8 !important;padding: 0px 10px 10px 10px;;  border-bottom:
+none;">
+                <legend style="width: auto !important; border: none;  font-size: 10px; font-weight: bold;">Target Details</legend>
+                <table style="font-size: 10px;">
+                    <tr>
+                        <td><label>Target Connection:</label></td>
+                        <td><select name= "TargetConnection" style="width: 800px;">
+                            <option value="default">Select Target Connection Name</option>
+                            {% for Databasename in Databasename_src %}
+                            <!--option value="{{ version }}"  {{ Databasename }}</option -->
+                                <option name="source">{{ Databasename }}</option>
+                            {% endfor %}
+                    </select>
+                </td>
+                        </tr>
+
+                      <tr>
+                        <td><label>Target Table:  </label></td>
+                        <td><input type="Text" name="TargetTable" placeholder="Table Name" style="width: 800px;"></td>
+                         </tr>
+
+                </table>
+            </fieldset>
+            <br>
+
+
+            <fieldset class=" col-sm-offset-1 col-sm-10" style="border: solid 2px #5D8AA8 !important;padding: 0px 10px 10px 10px;;  border-bottom:
+none;">
+                <legend style="width: auto !important; border: none;  font-size: 10px; font-weight: bold;">Column Name</legend>
+                <table style="font-size: 10px;">
+                    <tr><label for="Joincolumn">Column Name</label>
+                <input type="text" name="Joincolumn" placeholder="Column Name" style="max-width: 300px;" >
+                </tr>
+
+                </table>
+            </fieldset>
+         <br>
+
+            <fieldset class="col-md-offset-1 col-sm-10" style="border: solid 2px #5D8AA8 !important;padding: 0px 10px 10px 10px;;  border-bottom:
+none;">
+                <legend style="width: auto !important; border: none;  font-size: 10px; font-weight: bold;">Testcase Details</legend>
+                <table style="font-size: 10px;">
+                      <tr>
+                        <td><label>Testcase Group Name:  </label></td>
+                        <td><select name="testcase_group" style="width:800px">
+                           <option value="default">Select Testcase Group Name</option>
+                           {% for Databasename in Selected_Testcases %}
+                            <!--option value="{{ version }}"  {{ Databasename }}</option -->
+                                <option name="source">{{ Databasename }}</option>
+                            {% endfor %}
+
+                         </select></td>
+                         </tr>
+                </table>
+            </fieldset>
+            <br>
+            <br>
+            <fieldset class=" col-sm-offset-1 col-sm-10" style="border: solid 2px #5D8AA8 !important;padding: 0px 10px 10px 10px;;  border-bottom:
+none;">
+                <legend style="width: auto !important; border: none;  font-size: 10px; font-weight: bold;"></legend>
+                <table style="font-size: 10px;">
+                        <tr>
+                          <td><input type="submit" value="Execute" style="margin: 10px;font-weight: bold;"></td>
+                          </tr>
+
+                </table>
+                </fieldset>
+         </form>
+
+
+{% endblock %}
+
+
+

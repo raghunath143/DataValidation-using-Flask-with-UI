@@ -1,0 +1,246 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}
+Dashboard
+{% endblock %}
+{% block styles %}
+{{super()}}
+<style>
+body {
+  padding-top: 50px;
+  background-image:url('static/img/bk35.jpg');
+  background-size: cover;
+}
+.starter-template {
+  position: relative;
+  height: auto;
+}
+
+</style>
+
+{% endblock %}
+{% block scripts %}
+<script>
+    var selectedRow = null
+
+function onFormSubmit() {
+    if (validate()) {
+        var formData = readFormData();
+        if (selectedRow == null)
+            insertNewRecord(formData);
+        else
+            updateRecord(formData);
+        resetForm();
+    }
+}
+
+function readFormData() {
+    var formData = {};
+    formData["fullName"] = document.getElementById("fullName").value;
+    formData["empCode"] = document.getElementById("empCode").value;
+    formData["salary"] = document.getElementById("salary").value;
+    formData["city"] = document.getElementById("city").value;
+    return formData;
+}
+
+function insertNewRecord(data) {
+    var table = document.getElementById("employeeList").getElementsByTagName('tbody')[0];
+    var newRow = table.insertRow(table.length);
+    cell1 = newRow.insertCell(0);
+    cell1.innerHTML = data.fullName;
+    cell2 = newRow.insertCell(1);
+    cell2.innerHTML = data.empCode;
+    cell3 = newRow.insertCell(2);
+    cell3.innerHTML = data.salary;
+    cell4 = newRow.insertCell(3);
+    cell4.innerHTML = data.city;
+    cell4 = newRow.insertCell(4);
+    cell4.innerHTML = `<a onClick="onEdit(this)">Edit</a>
+                       <a onClick="onDelete(this)">Delete</a>`;
+}
+
+function resetForm() {
+    document.getElementById("fullName").value = "";
+    document.getElementById("empCode").value = "";
+    document.getElementById("salary").value = "";
+    document.getElementById("city").value = "";
+    selectedRow = null;
+}
+
+function onEdit(td) {
+    selectedRow = td.parentElement.parentElement;
+    document.getElementById("fullName").value = selectedRow.cells[0].innerHTML;
+    document.getElementById("empCode").value = selectedRow.cells[1].innerHTML;
+    document.getElementById("salary").value = selectedRow.cells[2].innerHTML;
+    document.getElementById("city").value = selectedRow.cells[3].innerHTML;
+}
+function updateRecord(formData) {
+    selectedRow.cells[0].innerHTML = formData.fullName;
+    selectedRow.cells[1].innerHTML = formData.empCode;
+    selectedRow.cells[2].innerHTML = formData.salary;
+    selectedRow.cells[3].innerHTML = formData.city;
+}
+
+function onDelete(td) {
+    if (confirm('Are you sure to delete this record ?')) {
+        row = td.parentElement.parentElement;
+        document.getElementById("employeeList").deleteRow(row.rowIndex);
+        resetForm();
+    }
+}
+function validate() {
+    isValid = true;
+    if (document.getElementById("fullName").value == "") {
+        isValid = false;
+        document.getElementById("fullNameValidationError").classList.remove("hide");
+    } else {
+        isValid = true;
+        if (!document.getElementById("fullNameValidationError").classList.contains("hide"))
+            document.getElementById("fullNameValidationError").classList.add("hide");
+    }
+    return isValid;
+}
+</script>
+{{super()}}
+{% endblock %}
+{% block content %}
+<nav class="navbar navbar-fixed-top" style="background-color: #1c3448">
+    <div class="container">
+	    <div class="col-md-offset-1 navbar-header" >
+            <!--a class="brand-logo"><img src="static/img/download.png" width="82" height="50"></a-->
+            <a class="navbar-brand" href="#" style="color: white;"><b>IDEA Project</b></a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar" >
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="" style="color: white;">Profile</a></li>
+                <li><a href="{{ url_for('logout') }}" style="color: white;">Log Out</a></li>
+            </ul>
+            <form class="navbar-form navbar-right">
+                <input class="form-control" placeholder="Search..." type="text">
+            </form>
+
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+<div  style="height:100%">
+
+    <!-- Sidebar -->
+    <nav id="sidebar" style="background-color: #000080; width:6%" class="col-sm-1" >
+        <br>
+         <a href="{{ url_for('dashboard') }}" ><img src="static/img/home.PNG" style="border-radius: 50%;" title="Home"  alt="Home" width="35" height="35"></a>
+        <br><br>
+        <a href="{{ url_for('Index') }}"><img src="static/img/dbcon.PNG" style="border-radius: 50%;" title="Create Database Connection"  alt="Create Database Connection" width="35" height="35"></a>
+         <br><br>
+        <a href="{{ url_for('testcasegroup') }}"><img src="static/img/tcg.PNG" style="border-radius: 50%;" title="Create Test Case Group" alt="Create Test Case Group" width="35" height="35"></a>
+         <br><br>
+        <a href="{{ url_for('comparision') }}"><img src="static/img/tc.PNG"  style="border-radius: 50%;" title="Create Test Case" alt="Create Test Case" width="35" height="35"></a>
+         <br><br>
+        <a href="{{ url_for('results') }}"><img src="static/img/report.PNG" style="border-radius: 50%;" title="Execute and View Report" alt="Execute and View Report" width="35" height="35"></a>
+         <br><br>
+        <a href="{{ url_for('graphics') }}"><img src="static/img/graph.PNG" style="border-radius: 50%;" title="Graphical Report" alt="Graphical Report" width="35" height="35"></a>
+         <br><br><br><br><br><br>
+        <a href=""><img src="static/img/dbcon.PNG" style="border-radius: 50%;" title="Help"  alt="Help" width="35" height="35"></a>
+            <br><br>
+        <br><br>
+
+    </nav>
+</div>
+<div  style="background-color:	#d3d3d3;"><b>Home->Test Case Group</b></div>
+<br>
+
+  <form action = "/querycompare" method = "post">
+
+
+            <br>
+
+            <fieldset class=" col-sm-offset-1 col-sm-10" style="border: solid 2px #5D8AA8 !important;padding: 0px 10px 10px 10px;;  border-bottom:
+none;">
+                <legend style="width: auto !important; border: none;  font-size: 10px; font-weight: bold;">Source Details</legend>
+                <table style="font-size: 10px;">
+                    <tr>
+                        <td><label>Source Connection:</label></td>
+                        <td><select name= "SourceConnection" style="width: 800px;">
+                            <option value="default">Select Source Connection Name</option>
+                            {% for Databasename in Databasename_src %}
+                            <!--option value="{{ version }}"  {{ Databasename }}</option -->
+                                <option name="source">{{ Databasename }}</option>
+                            {% endfor %}
+                    </select>
+                </td>
+                        </tr>
+
+                      <tr>
+                        <td><label>Source Table:  </label></td>
+                        <td><input type="Text" name="SourceTable" placeholder="Table Name" style="width: 800px;"></td>
+                         </tr>
+
+                         <tr>
+                      <td><label>Source Query: </label></td>
+                      <td><input type="Text" name= "source_query" style="width: 800px;"></td>
+                      </tr>
+
+                </table>
+            </fieldset>
+            <br>
+
+            <fieldset class=" col-sm-offset-1 col-sm-10" style="border: solid 2px #5D8AA8 !important;padding: 0px 10px 10px 10px;;  border-bottom:
+none;">
+                <legend style="width: auto !important; border: none;  font-size: 10px; font-weight: bold;">Target Details</legend>
+                <table style="font-size: 10px;">
+                    <tr>
+                        <td><label>Target Connection:</label></td>
+                        <td><select name= "TargetConnection" style="width: 800px;">
+                            <option value="default">Select Target Connection Name</option>
+                            {% for Databasename in Databasename_src %}
+                            <!--option value="{{ version }}"  {{ Databasename }}</option -->
+                                <option name="source">{{ Databasename }}</option>
+                            {% endfor %}
+                    </select>
+                </td>
+                        </tr>
+
+                      <tr>
+                        <td><label>Target Table:  </label></td>
+                        <td><input type="Text" name="TargetTable" placeholder="Table Name" style="width: 800px;"></td>
+                         </tr>
+                         <tr>
+                      <td><label>Target Query: </label></td>
+                      <td><input  type="Text" name="target_query" style="width: 800px;"></td>
+                      </tr>
+
+                </table>
+            </fieldset>
+            <br>
+
+
+
+            <fieldset class=" col-sm-offset-1 col-sm-10" style="border: solid 2px #5D8AA8 !important;padding: 0px 10px 10px 10px;;  border-bottom:
+none;">
+                <legend style="width: auto !important; border: none;  font-size: 10px; font-weight: bold;"></legend>
+                <table style="font-size: 10px;">
+                        <tr>
+                          <td><input type="submit" value="Execute" style="margin: 10px;font-weight: bold;"></td>
+                          </tr>
+
+                </table>
+                </fieldset>
+         </form>
+
+
+   <br>
+<br>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+

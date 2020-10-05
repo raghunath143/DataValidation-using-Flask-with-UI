@@ -1,0 +1,148 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}
+Dashboard
+{% endblock %}
+{% block styles %}
+{{super()}}
+<style>
+body {
+  padding-top: 50px;
+  background-image:url('static/img/bk35.jpg');
+  background-size: cover;
+}
+.starter-template {
+  position: relative;
+  height: auto;
+}
+</style>
+{% endblock %}
+{% block scripts %}
+<script>
+
+    function exportTableToExcel(tableID, filename = 'download'){
+    var downloadLink;
+    var dataType = 'application/vnd.ms-excel';
+    var tableSelect = document.getElementById(tableID);
+    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+    // Specify file name
+    filename = filename?filename+'.xls':'excel_data.xls';
+
+    // Create download link element
+    downloadLink = document.createElement("a");
+
+    document.body.appendChild(downloadLink);
+
+    if(navigator.msSaveOrOpenBlob){
+        var blob = new Blob(['\ufeff', tableHTML], {
+            type: dataType
+        });
+        navigator.msSaveOrOpenBlob( blob, filename);
+    }else{
+        // Create a link to the file
+        downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+
+        // Setting the file name
+        downloadLink.download = filename;
+
+        //triggering the function
+        downloadLink.click();
+    }
+}
+
+</script>
+{{super()}}
+{% endblock %}
+{% block content %}
+<nav class="navbar navbar-fixed-top" style="background-color: #1c3448">
+    <div class="container">
+	    <div class="col-md-offset-1 navbar-header" >
+            <!--a class="brand-logo"><img src="static/img/download.png" width="82" height="50"></a-->
+            <a class="navbar-brand" href="#" style="color: white;"><b>IDEA Project</b></a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar" >
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="" style="color: white;">Profile</a></li>
+                <li><a href="{{ url_for('logout') }}" style="color: white;">Log Out</a></li>
+            </ul>
+            <form class="navbar-form navbar-right">
+                <input class="form-control" placeholder="Search..." type="text">
+            </form>
+
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+<div class="wrapper" class="full-height">
+
+    <!-- Sidebar -->
+    <nav id="sidebar" style="background-color: #000080; width:6%" class="col-sm-1" >
+        <br>
+         <a href="" ><img src="static/img/home.PNG" style="border-radius: 50%;" title="Home"  alt="Home" width="35" height="35"></a>
+        <br><br>
+        <a href="{{ url_for('Index') }}"><img src="static/img/dbcon.PNG" style="border-radius: 50%;" title="Create Database Connection"  alt="Create Database Connection" width="35" height="35"></a>
+         <br><br>
+        <a href="{ url_for('testcasegroup') }}"><img src="static/img/tcg.PNG" style="border-radius: 50%;" title="Create Test Case Group" alt="Create Test Case Group" width="35" height="35"></a>
+         <br><br>
+        <a href="{{ url_for('comparision') }}"><img src="static/img/tc.PNG"  style="border-radius: 50%;" title="Create Test Case" alt="Create Test Case" width="35" height="35"></a>
+         <br><br>
+        <a href="{{ url_for('results') }}"><img src="static/img/report.PNG" style="border-radius: 50%;" title="Execute and View Report" alt="Execute and View Report" width="35" height="35"></a>
+         <br><br>
+        <a href="{{ url_for('graphics') }}"><img src="static/img/graph.PNG" style="border-radius: 50%;" title="Graphical Report" alt="Graphical Report" width="35" height="35"></a>
+         <br><br><br><br><br><br>
+        <a href=""><img src="static/img/dbcon.PNG" style="border-radius: 50%;" title="Help"  alt="Help" width="35" height="35"></a>
+            <br><br>
+        <br><br>
+
+    </nav>
+</div>
+<div  style="background-color:	#d3d3d3;"><b>Home</b></div>
+<br><br><br>
+<table>
+<tr>
+<td>
+
+	<div class="col-md-offset-3" align="middle" style="float:left;height:100px; width: 140px; border: solid 1px steelblue;border-radius: 4px 4px 4px 4px; box-shadow: 3px 3px 5px #535353;>
+		<div style="font:bold">
+			<b>Table - Column  Comparison</b>
+			<br><br>
+			<a href="{{ url_for('comparision') }}"><img src="static/img/compare.PNG" style="border-radius: 50%; border: solid 2px steelblue;" title="Table - Column  Comparison"  alt="Table - Column  Comparison" width="35" height="35"></a>
+		</div>
+	</div>
+</td>
+<td>
+	<div class="col-md-offset-6" align="middle" style="height:100px; width: 140px; border: solid 1px steelblue;border-radius: 4px 4px 4px 4px; box-shadow: 3px 3px 5px #535353;>
+        <div style="font:bold">
+		<br>
+			<b>QUERY Dashboard</b>
+			<br><br>
+			<a href="{{ url_for('querycompare') }}"><img src="static/img/compare.PNG" style="border-radius: 50%; border: solid 2px steelblue;" title="Dashboard"  alt="Dashboard" width="35" height="35"></a>
+
+		</div>
+	</div>
+</td>
+<td>
+
+	<div class="col-md-offset-9" align="middle" style="height:100px; width: 140px; border: solid 1px steelblue;border-radius: 4px 4px 4px 4px; box-shadow: 3px 3px 5px #535353;>
+        <div style="font:bold">
+		<br>
+			<b>Report</b>
+			<br><br>
+			<a href=""><img src="static/img/compare.PNG" style="border-radius: 50%; border: solid 2px steelblue;" title="Report"  alt="Report" width="35" height="35"></a>
+
+		</div>
+	</div>
+</td>
+</tr>
+</table>
+
+
+
+
+
+
+
+{% endblock %}
+
+
+

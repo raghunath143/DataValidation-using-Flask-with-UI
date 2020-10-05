@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Validator Page</title>
+</head>
+<body>
+
+<h2>Validator</h2>
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #D3D3D3;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}
+
+label{
+  color: black;
+  text-align: left;
+  padding: 16px;
+  text-decoration: none;
+}
+    
+    
+select {
+
+        width: 350px;
+
+        margin: 10px;
+
+    }
+
+
+button{
+		width : 110px;
+        height: 40px;
+        margin: 10px;
+        text-align: center;
+        position: absolute;
+      	top: 30%;
+    }
+    
+p{
+	margin: 16px;
+     text-align: left;
+ }
+ 
+ 
+#b{
+		width : 110px;
+        height: 40px;
+        margin: 10px;
+        text-align: center;
+        position: absolute;
+      	top: 60%;
+    }
+    
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+</style>
+
+</style>
+</head>
+<body>
+<ul>
+  <li><a href="#">Connections</a></li>
+  <li><a href="#">Testcase Group</a></li>
+  <li><a href="#">Test case</a></li>
+  <li><a href="#">Execute and Monitor </a></li>
+  <li><a href="#">Execution Report </a></li>
+</ul>
+<form>
+<label for="testcase group">Testcase Group</label>
+
+<select id="testcase group">
+  <option value="teradata_grp">Teradata_grp</option>
+  <option value="teradata_grp1">pg validator db tc</option>
+</select><br>
+<label for="testcase name">Testcase Name</label>
+
+<select id="testcase_name">
+  <option value="testcase_name">All</option>
+  <option value="testcase_name1">Test demo</option>
+</select>
+<button type="button">Execute</button>
+
+<p>Monitor Execution Status</p>
+
+<label for="testcase group">Testcase Group</label>
+
+<select id="testcase group">
+  <option value="teradata_grp">All</option>
+</select><br>
+<label for="testcase name">Testcase Name</label>
+
+<select id="testcase_name">
+  <option value="testcase_name">All</option>
+</select>
+</form>
+
+<form action="">
+  <label for="From date" id="d">From Date</label>
+  <input type="date" id="from_date">
+    <label for="To date">To Date</label>
+  <input type="date" id="to_date">
+  <button id ="b">Refresh</button>
+  
+
+</style>
+<div style="overflow-x:auto;">
+  <table>
+    <tr>
+      <th>execution_id</th>
+      <th>testcase_group_name</th>
+      <th>testcase_name</th>
+      <th>validation_status</th>
+   	</tr>
+    <tr>
+      <td>272</td>
+      <td>Teradata_grp</td>
+      <td>td tc1 data</td>
+      <td>Success</td>
+    </tr>
+      <tr>
+      <td>271</td>
+      <td>Teradata_grp</td>
+      <td>td tc data</td>
+      <td>Success</td>
+    </tr>
+     <tr>
+      <td>270</td>
+      <td>Teradata_grp</td>
+      <td>td tc aggregate</td>
+      <td>Success</td>
+    </tr>
+    <tr>
+      <td>269</td>
+      <td>Teradata_grp</td>
+      <td>td tc1 data</td>
+      <td>Success</td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>
