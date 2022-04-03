@@ -2,7 +2,7 @@
 """
 Created on Tue Sep  8 16:59:28 2020
 
-@author: skuruba
+@author: raghunath siripudi
 """
 
 validation_list = ['rowcount', 'columncount', 'nullcount']
