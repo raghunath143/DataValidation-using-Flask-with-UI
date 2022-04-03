@@ -1,9 +1,8 @@
 #
 # app.py
 #
-# Project: IDEA Project
+# Project: Data Validation
 #
-# Team: IDEA QA
 #
 # Author: Raghunath, Siripudi
 #
